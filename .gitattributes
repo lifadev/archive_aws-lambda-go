@@ -1,0 +1,16 @@
+* text=auto
+
+*.md text
+*.c text
+*.go text
+
+*.png binary
+
+.editorconfig text
+.gitattributes text
+.gitignore text
+.mailmap text
+Dockerfile text
+Makefile text
+LICENSE text
+NOTICE text
