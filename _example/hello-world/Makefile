@@ -1,12 +1,18 @@
 # System build
 
+ifeq ($(shell uname),Darwin)
+    FORMAT=-f
+else
+    FORMAT=-c
+endif
+
 build:
 	go build -buildmode=c-shared -ldflags="-w -s" -o handler.so
-	chown `stat -c "%u:%g" .` handler.so
+	chown `stat $(FORMAT) "%u:%g" .` handler.so
 
 pack:
 	zip handler.zip handler.so
-	chown `stat -c "%u:%g" .` handler.zip
+	chown `stat $(FORMAT)-f "%u:%g" .` handler.zip
 
 # Docker build
 
