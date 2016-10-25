@@ -10,14 +10,6 @@ import (
 func handle(evt json.RawMessage, ctx *runtime.Context) (interface{}, error) {
 	log.Printf("Hello, %s!", "World")
 
-	var evto interface{}
-	json.Unmarshal(evt, &evto)
-	evtb, _ := json.MarshalIndent(evto, "", "  ")
-	log.Println(string(evtb))
-
-	ctxb, _ := json.MarshalIndent(ctx, "", "  ")
-	log.Println(string(ctxb))
-
 	return nil, nil
 }
 

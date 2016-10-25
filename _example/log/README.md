@@ -1,6 +1,31 @@
 # Example - Log
 
-Explore event and context with the standard Go log package.
+## Execution
+
+```go
+func handle(evt json.RawMessage, ctx *runtime.Context) (interface{}, error) {
+	log.Printf("Hello, %s!", "World")
+
+	return nil, nil
+}
+```
+
+## Interpretation
+
+### Log output
+
+```
+START RequestId: bcba8d4f-9ab1-11e6-b37f-bba61aa6fcfe Version: $LATEST
+2016-10-25T12:51:24.88Z	bcba8d4f-9ab1-11e6-b37f-bba61aa6fcfe	Hello, World!
+END RequestId: bcba8d4f-9ab1-11e6-b37f-bba61aa6fcfe
+REPORT RequestId: bcba8d4f-9ab1-11e6-b37f-bba61aa6fcfe	Duration: 0.77 ms	Billed Duration: 100 ms 	Memory Size: 128 MB	Max Memory Used: 15 MB
+```
+
+### Execution result
+
+```json
+null
+```
 
 ## Usage
 
