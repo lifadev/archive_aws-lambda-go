@@ -6,7 +6,7 @@ The simpliest example of running Go code on the AWS Lambda platform.
 
 ### Build & Package 
 
-#### With Docker
+#### With Docker (only option for OSX users)
 
 ```sh
 make dbuild
