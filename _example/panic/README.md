@@ -16,13 +16,17 @@ func handle(evt json.RawMessage, ctx *runtime.Context) (interface{}, error) {
 
 An out of range index is accessed, and Lambda begins *panicking*:
   1. Normal execution of Lambda stops.
+	
   2. Stack trace is logged in CloudWatch.
+	
     ```
     ...
     go/src/github.com/eawsy/aws-lambda-go/_example/panic/handler.go:12 +0x16
     ...
     ```
+		
   3. Error message is returned to the client.
+	
     ```
     ...
     "errorMessage": "runtime error: index out of range"
