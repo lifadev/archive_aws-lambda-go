@@ -146,7 +146,7 @@ func handle(evt json.RawMessage, ctx *runtime.Context) (interface{}, error) {
 ### Building
 
 This project uses [cgo][go-cgo-url] and [Python C extension][python-ext-url] to
-provide a seamless intergration between AWS Lambda Python 2.7 runtime and Go 
+provide a seamless integration between AWS Lambda Python 2.7 runtime and Go 
 code. This is how we managed to create one and only one binary to deploy on the
 AWS Lambda platform.
 
