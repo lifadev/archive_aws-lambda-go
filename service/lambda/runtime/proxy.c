@@ -190,19 +190,31 @@ proxy_handle(PyObject* self, PyObject* args)
   return west;
 }
 
+#define STR(s) #s
+#define XSTR(s) STR(s)
+#define INIT_MODULE_SIG(name) PyMODINIT_FUNC init ## name (void)
+#define INIT_MODULE(name) INIT_MODULE_SIG(name)
+
+#ifndef FUNCTION
+#define FUNCTION handler
+#endif
+
+#ifndef HANDLER
+#define HANDLER handle
+#endif
+
 static PyMethodDef
 module_methods[] = {
-  {"handle", (PyCFunction)proxy_handle, METH_VARARGS},
+  {XSTR(HANDLER), (PyCFunction)proxy_handle, METH_VARARGS},
   {NULL, NULL}
 };
 
-PyMODINIT_FUNC
-inithandler(void)
+INIT_MODULE(FUNCTION)
 {
   py_json_module = PyImport_ImportModule("json");
   py_os_module = PyImport_ImportModule("os");
-  PyObject *module = Py_InitModule("handler", module_methods);
-  module_error = PyErr_NewException("handler.error", NULL, NULL);
+  PyObject *module = Py_InitModule(XSTR(FUNCTION), module_methods);
+  module_error = PyErr_NewException(XSTR(FUNCTION)".error", NULL, NULL);
   Py_INCREF(module_error);
   PyModule_AddObject(module, "error", module_error);
 }
