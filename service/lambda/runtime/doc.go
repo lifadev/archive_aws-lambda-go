@@ -15,43 +15,7 @@
 //
 
 /*
-Package runtime allows running standard Go code on the AWS Lambda platform
-https://aws.amazon.com/lambda/.
-
-Creating:
-
-	package main
-
-	import (
-		"encoding/json"
-
-		"github.com/eawsy/aws-lambda-go/service/lambda/runtime"
-	)
-
-	func handle(evt json.RawMessage, ctx *runtime.Context) (interface{}, error) {
-		return "Hello, World!", nil
-	}
-
-	func init() {
-		runtime.HandleFunc(handle)
-	}
-
-	func main() {}
-
-Building:
-
-	go build -buildmode=c-shared -ldflags "-s -w" -o handler.so
-
-Packaging:
-
-	zip handler.zip handler.so
-
-Deploying:
-
-	Runtime: Python 2.7
-	Handler: handler.handle
-
-Voilà!
+Package runtime provides a fast and clean way to execute Go on AWS Lambda.
 
 Take a tour at https://github.com/eawsy/aws-lambda-go
 */
