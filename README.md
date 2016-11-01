@@ -58,7 +58,7 @@ aws lambda invoke --function-name preview-go output.txt
 
 ## Documentation
 
-This [wiki](wiki) is the main source of documentation for developers working with or contributing to the 
+This [wiki][eawsy-wiki] is the main source of documentation for developers working with or contributing to the 
 project.
 
 ## About
@@ -87,6 +87,7 @@ affiliates in the United States and/or other countries.
 [eawsy-github]: https://github.com/eawsy
 [eawsy-gitter]: https://gitter.im/eawsy/bavardage
 [eawsy-godoc]: https://godoc.org/github.com/eawsy/aws-lambda-go/service/lambda/runtime
+[eawsy-wiki]: https://github.com/eawsy/aws-lambda-go/wiki
 [eawsy-hire-form]: https://docs.google.com/forms/d/e/1FAIpQLSfPvn1Dgp95DXfvr3ClPHCNF5abi4D1grveT5btVyBHUk0nXw/viewform
 [aws-home]: https://aws.amazon.com/
 [aws-lambda-home]: https://aws.amazon.com/lambda/
