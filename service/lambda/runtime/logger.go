@@ -38,7 +38,7 @@ type ctxLogger struct{ ctx *Context }
 
 func (l *ctxLogger) Write(info []byte) (int, error) {
 	now := time.Now().UTC().Format("2006-01-02T15:04:05.999Z")
-	msg := fmt.Sprintf("%s\t%s\t%s", now, l.ctx.AwsRequestID, string(info))
+	msg := fmt.Sprintf("%s\t%s\t%s", now, l.ctx.AWSRequestID, string(info))
 	C.proxy_log(C.CString(msg))
 	return len(info), nil
 }

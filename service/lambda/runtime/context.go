@@ -93,7 +93,7 @@ type Context struct {
 	// It can be function ARN or alias ARN. An unqualified ARN executes the
 	// $LATEST version and aliases execute the function version they are pointing
 	// to.
-	InvokedFunctionArn string `json:"invoked_function_arn"`
+	InvokedFunctionARN string `json:"invoked_function_arn"`
 
 	// The Memory limit, in MB, configured for the Lambda function.
 	MemoryLimitInMB int `json:"memory_limit_in_mb,string"`
@@ -104,7 +104,7 @@ type Context struct {
 	// retries the function (for example, in a situation where the Lambda function
 	// processing Amazon Kinesis records throw an exception), the request ID
 	// remains the same.
-	AwsRequestID string `json:"aws_request_id"`
+	AWSRequestID string `json:"aws_request_id"`
 
 	// The CloudWatch log group name of the Lambda function that is executing.
 	// It can be empty if the IAM user provided does not have permission for
