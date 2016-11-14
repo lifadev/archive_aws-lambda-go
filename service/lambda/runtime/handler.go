@@ -16,20 +16,7 @@
 
 package runtime
 
-import "C"
-
-// extern long long proxy_get_remaining_time_in_millis();
-import "C"
-
-import (
-	"encoding/json"
-	"fmt"
-	"log"
-	"os"
-	"runtime"
-
-	"github.com/Zambiorix/aws-lambda-go/service/lambda/context"
-)
+import "encoding/json"
 
 var (
 	handler Handler
@@ -48,16 +35,16 @@ var (
 // panic, logs a stack trace to the CloudWatch log stream, and terminate the
 // Lambda function execution.
 type Handler interface {
-	HandleLambda(json.RawMessage, *context.Context) (interface{}, error)
+	HandleLambda(json.RawMessage, *Context) (interface{}, error)
 }
 
 // HandlerFunc type is an adapter to allow the use of ordinary functions as
 // Lambda handlers. If f is a function with the appropriate signature,
 // HandlerFunc(f) is a Handler that calls f.
-type HandlerFunc func(json.RawMessage, *context.Context) (interface{}, error)
+type HandlerFunc func(json.RawMessage, *Context) (interface{}, error)
 
 // HandleLambda calls f(evt, ctx)
-func (f HandlerFunc) HandleLambda(evt json.RawMessage, ctx *context.Context) (interface{}, error) {
+func (f HandlerFunc) HandleLambda(evt json.RawMessage, ctx *Context) (interface{}, error) {
 	return f(evt, ctx)
 }
 
@@ -67,53 +54,6 @@ func Handle(h Handler) {
 }
 
 // HandleFunc registers the given handler function.
-func HandleFunc(h func(json.RawMessage, *context.Context) (interface{}, error)) {
+func HandleFunc(h func(json.RawMessage, *Context) (interface{}, error)) {
 	Handle(HandlerFunc(h))
-}
-
-//export handle
-func handle(revt, rctx, renv *C.char) (rres *C.char, rerr *C.char) {
-	defer func() {
-		if err := recover(); err != nil {
-			const size = 64 << 10
-			buf := make([]byte, size)
-			buf = buf[:runtime.Stack(buf, false)]
-			log.Printf("%s\n%s", err, buf)
-			rres = nil
-			rerr = C.CString(fmt.Sprintf("%s", err))
-		}
-	}()
-
-	evt := json.RawMessage([]byte(C.GoString(revt)))
-
-	var ctx context.Context
-	if err := json.Unmarshal([]byte(C.GoString(rctx)), &ctx); err != nil {
-		return nil, C.CString(err.Error())
-	}
-
-	ctx.RemainingTimeInMillis = func() int64 {
-		return int64(C.proxy_get_remaining_time_in_millis())
-	}
-
-	log.SetFlags(0)
-	log.SetOutput(&ctxLogger{&ctx})
-
-	var env map[string]string
-	if err := json.Unmarshal([]byte(C.GoString(renv)), &env); err != nil {
-		return nil, C.CString(err.Error())
-	}
-	for k, v := range env {
-		os.Setenv(k, v)
-	}
-
-	if res, err := handler.HandleLambda(evt, &ctx); err != nil {
-		return nil, C.CString(err.Error())
-	} else if res != nil {
-		tmp, err := json.Marshal(res)
-		if err != nil {
-			return nil, C.CString(err.Error())
-		}
-		return C.CString(string(tmp)), nil
-	}
-	return nil, nil
 }

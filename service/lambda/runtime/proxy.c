@@ -1,3 +1,5 @@
+// +build cgo
+
 //
 // Copyright 2016 Alsanium, SAS. or its affiliates. All rights reserved.
 //
