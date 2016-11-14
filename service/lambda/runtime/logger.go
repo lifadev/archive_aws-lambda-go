@@ -1,3 +1,5 @@
+// +build cgo
+
 //
 // Copyright 2016 Alsanium, SAS. or its affiliates. All rights reserved.
 //
@@ -23,8 +25,6 @@ import (
 	"fmt"
 	"log"
 	"time"
-
-	"github.com/Zambiorix/aws-lambda-go/service/lambda/context"
 )
 
 type rawLogger struct{}
@@ -36,7 +36,7 @@ func (l *rawLogger) Write(info []byte) (int, error) {
 	return len(info), nil
 }
 
-type ctxLogger struct{ ctx *context.Context }
+type ctxLogger struct{ ctx *Context }
 
 func (l *ctxLogger) Write(info []byte) (int, error) {
 	now := time.Now().UTC().Format("2006-01-02T15:04:05.999Z")
