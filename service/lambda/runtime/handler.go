@@ -18,12 +18,17 @@ package runtime
 
 import "C"
 
+// extern long long proxy_get_remaining_time_in_millis();
+import "C"
+
 import (
 	"encoding/json"
 	"fmt"
 	"log"
 	"os"
 	"runtime"
+
+	"github.com/Zambiorix/aws-lambda-go/service/lambda/context"
 )
 
 var (
@@ -43,16 +48,16 @@ var (
 // panic, logs a stack trace to the CloudWatch log stream, and terminate the
 // Lambda function execution.
 type Handler interface {
-	HandleLambda(json.RawMessage, *Context) (interface{}, error)
+	HandleLambda(json.RawMessage, *context.Context) (interface{}, error)
 }
 
 // HandlerFunc type is an adapter to allow the use of ordinary functions as
 // Lambda handlers. If f is a function with the appropriate signature,
 // HandlerFunc(f) is a Handler that calls f.
-type HandlerFunc func(json.RawMessage, *Context) (interface{}, error)
+type HandlerFunc func(json.RawMessage, *context.Context) (interface{}, error)
 
 // HandleLambda calls f(evt, ctx)
-func (f HandlerFunc) HandleLambda(evt json.RawMessage, ctx *Context) (interface{}, error) {
+func (f HandlerFunc) HandleLambda(evt json.RawMessage, ctx *context.Context) (interface{}, error) {
 	return f(evt, ctx)
 }
 
@@ -62,7 +67,7 @@ func Handle(h Handler) {
 }
 
 // HandleFunc registers the given handler function.
-func HandleFunc(h func(json.RawMessage, *Context) (interface{}, error)) {
+func HandleFunc(h func(json.RawMessage, *context.Context) (interface{}, error)) {
 	Handle(HandlerFunc(h))
 }
 
@@ -81,9 +86,13 @@ func handle(revt, rctx, renv *C.char) (rres *C.char, rerr *C.char) {
 
 	evt := json.RawMessage([]byte(C.GoString(revt)))
 
-	var ctx Context
+	var ctx context.Context
 	if err := json.Unmarshal([]byte(C.GoString(rctx)), &ctx); err != nil {
 		return nil, C.CString(err.Error())
+	}
+
+	ctx.RemainingTimeInMillis = func() int64 {
+		return int64(C.proxy_get_remaining_time_in_millis())
 	}
 
 	log.SetFlags(0)

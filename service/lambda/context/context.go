@@ -14,10 +14,7 @@
 // limitations under the License.
 //
 
-package runtime
-
-// extern long long proxy_get_remaining_time_in_millis();
-import "C"
+package context
 
 // CognitoIdentity provides information about the Amazon Cognito identity
 // provider when Lambda function invoked through the AWS Mobile SDK.
@@ -74,6 +71,9 @@ type ClientContext struct {
 	Environment map[string]string `json:"env"`
 }
 
+// RemainingTimeInMillisFunc prototype
+type RemainingTimeInMillisFunc func() int64
+
 // Context provides information about Lambda execution environment.
 //
 // For example, you can use the Context to determine the
@@ -125,15 +125,13 @@ type Context struct {
 	// function invoked through the AWS Mobile SDK.
 	// It can be nil.
 	ClientContext *ClientContext `json:"client_context,omitempty"`
-}
 
-// RemainingTimeInMillis returns remaining execution time till the function will
-// be terminated, in milliseconds.
-//
-// The maximum time limit at which Lambda will terminate the function execution
-// is set at the time the Lambda function is created. Information about the
-// remaining time of function execution can be used to specify function behavior
-// when nearing the timeout.
-func (c *Context) RemainingTimeInMillis() int64 {
-	return int64(C.proxy_get_remaining_time_in_millis())
+	// RemainingTimeInMillis returns remaining execution time till the function will
+	// be terminated, in milliseconds.
+	//
+	// The maximum time limit at which Lambda will terminate the function execution
+	// is set at the time the Lambda function is created. Information about the
+	// remaining time of function execution can be used to specify function behavior
+	// when nearing the timeout.
+	RemainingTimeInMillis RemainingTimeInMillisFunc `json:"-"`
 }
