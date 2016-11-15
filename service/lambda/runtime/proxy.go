@@ -1,4 +1,4 @@
-// +build cgo
+// +build proxy
 
 //
 // Copyright 2016 Alsanium, SAS. or its affiliates. All rights reserved.
@@ -21,6 +21,7 @@ package runtime
 // #cgo pkg-config: python2
 // #cgo CFLAGS: --std=gnu11
 // extern long long proxy_get_remaining_time_in_millis();
+// extern void proxy_log(char*);
 import "C"
 
 import (
@@ -29,7 +30,20 @@ import (
 	"log"
 	"os"
 	"runtime"
+	"time"
 )
+
+var logger *ilogger
+
+type ilogger struct {
+	id string
+}
+
+func (l *ilogger) Write(info []byte) (int, error) {
+	now := time.Now().UTC().Format("2006-01-02T15:04:05.999Z")
+	C.proxy_log(C.CString(fmt.Sprintf("%s\t%s\t%s", now, l.id, string(info))))
+	return len(info), nil
+}
 
 //export handle
 func handle(revt, rctx, renv *C.char) (rres *C.char, rerr *C.char) {
@@ -55,8 +69,7 @@ func handle(revt, rctx, renv *C.char) (rres *C.char, rerr *C.char) {
 		return int64(C.proxy_get_remaining_time_in_millis())
 	}
 
-	log.SetFlags(0)
-	log.SetOutput(&ctxLogger{ctx})
+	logger.id = ctx.AWSRequestID
 
 	var env map[string]string
 	if err := json.Unmarshal([]byte(C.GoString(renv)), &env); err != nil {
@@ -76,4 +89,10 @@ func handle(revt, rctx, renv *C.char) (rres *C.char, rerr *C.char) {
 		return C.CString(string(tmp)), nil
 	}
 	return nil, nil
+}
+
+func init() {
+	logger = &ilogger{"00000000-0000-0000-0000-000000000000"}
+	log.SetFlags(0)
+	log.SetOutput(logger)
 }
