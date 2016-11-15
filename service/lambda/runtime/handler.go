@@ -18,9 +18,7 @@ package runtime
 
 import "encoding/json"
 
-var (
-	handler Handler
-)
+var handler Handler
 
 // Handler responds to a Lambda function invocation.
 //
