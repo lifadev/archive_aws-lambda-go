@@ -35,7 +35,7 @@ func main() {
 
 	os.RemoveAll(so)
 
-	cmd := exec.Command("go", "build", "-buildmode=c-shared", "-ldflags=-w -s", "-o", so)
+	cmd := exec.Command("go", "build", "-buildmode=c-shared", "-ldflags=-w -s", "-tags", "proxy", "-o", so)
 	env := os.Environ()
 	env = append(env, fmt.Sprintf("CGO_CFLAGS=-DFUNCTION=%s -DHANDLER=%s", f, h))
 	cmd.Env = env
