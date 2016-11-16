@@ -18,7 +18,7 @@ Node.js, Python and Java. This project provides Go support *without spawning a p
 ## Preview
 
 ```sh
-go get -d github.com/eawsy/aws-lambda-go/...
+go get -u -d github.com/eawsy/aws-lambda-go/...
 ```
 
 ```go
@@ -42,6 +42,7 @@ func main() {}
 ```
 
 ```sh
+docker pull eawsy/aws-lambda-go
 docker run --rm -v $GOPATH:/go -v $PWD:/tmp eawsy/aws-lambda-go
 ```
 
