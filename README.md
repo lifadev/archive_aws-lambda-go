@@ -1,20 +1,27 @@
+<a id="top" name="top"></a>
+
+---
+
+> This project will be deprecated by February 2017 with the release of Go 1.8. Please migrate to 
+  [eawsy/aws-lambda-go-shim](https://github.com/eawsy/aws-lambda-go-shim).
+
+---
+<br>
+
 [<img src="_asset/powered-by-aws.png" alt="Powered by Amazon Web Services" align="right">][aws-home]
 [<img src="_asset/created-by-eawsy.png" alt="Created by eawsy" align="right">][eawsy-home]
-
 # eawsy/aws-lambda-go
 > A fast and clean way to execute Go on AWS Lambda.
 
-![Runtime][runtime-badge]
 [![Api][api-badge]][eawsy-godoc]
-[![Chat][chat-badge]][eawsy-gitter]
-![Status][status-badge]
+[![Status][status-badge]](#top)
 [![License][license-badge]](LICENSE)
-<sup>•</sup> <sup>•</sup> <sup>•</sup>
-[![Hire us][hire-badge]][eawsy-hire-form]
+[![Chat][chat-badge]][eawsy-gitter]
 
-[AWS Lambda][aws-lambda-home] lets you run code without provisioning or managing servers. For now it only supports 
-Node.js, Python and Java. This project provides Go support *without spawning a process*.
+[AWS Lambda][aws-lambda-home] lets you run code without provisioning or managing servers. [For now][aws-lambda-lng], it 
+only supports Node.js, Java, C# and Python. This project provides Go support *without spawning a process*.
 
+[<img src="_asset/arrow-up.png" align="right">](#top)
 ## Preview
 
 ```sh
@@ -57,11 +64,13 @@ aws lambda invoke --function-name preview-go output.txt
 
 <kbd>![Preview](_asset/eawsy-preview.png)</kbd>
 
+[<img src="_asset/arrow-up.png" align="right">](#top)
 ## Documentation
 
 This [wiki][eawsy-wiki] is the main source of documentation for developers working with or contributing to the 
 project.
 
+[<img src="_asset/arrow-up.png" align="right">](#top)
 ## About
 
 [![eawsy](_asset/eawsy-logo.png)][eawsy-home]
@@ -71,11 +80,50 @@ This project is maintained and funded by Alsanium, SAS.
 [We][eawsy-home] :heart: [AWS][aws-home] and open source software. See [our other projects][eawsy-github], or 
 [hire us][eawsy-hire-form] to help you build modern applications on AWS.
 
+[<img src="_asset/arrow-up.png" align="right">](#top)
+## Contact
+
+We want to make it easy for you, users and contributers, to talk with us and connect with each others, to share ideas, 
+solve problems and make help this project awesome. Here are the main channels we're running currently and we'd love to 
+hear from you on them.
+
+### Twitter 
+  
+[eawsyhq][eawsy-twitter] 
+
+Follow and chat with us on Twitter. 
+
+Share stories!
+
+### Gitter 
+
+[eawsy/bavardage][eawsy-gitter]
+
+This is for all of you. Users, developers and curious. You can find help, links, questions and answers from all the 
+community including the core team.
+
+Ask questions!
+
+### GitHub
+
+[pull requests][eawsy-pr] & [issues][eawsy-issues]
+
+You are invited to contribute new features, fixes, or updates, large or small; we are always thrilled to receive pull 
+requests, and do our best to process them as fast as we can.
+
+Before you start to code, we recommend discussing your plans through the [eawsy/bavardage channel][eawsy-gitter], 
+especially for more ambitious contributions. This gives other contributors a chance to point you in the right direction, 
+give you feedback on your design, and help you find out if someone else is working on the same thing.
+
+Write code!
+
+[<img src="_asset/arrow-up.png" align="right">](#top)
 ## License
 
 This product is licensed to you under the Apache License, Version 2.0 (the "License"); you may not use this product 
 except in compliance with the License. See [LICENSE](LICENSE) and [NOTICE](NOTICE) for more information.
 
+[<img src="_asset/arrow-up.png" align="right">](#top)
 ## Trademark
 
 Alsanium, eawsy, the "Created by eawsy" logo, and the "eawsy" logo are trademarks of Alsanium, SAS. or its affiliates in 
@@ -90,11 +138,13 @@ affiliates in the United States and/or other countries.
 [eawsy-godoc]: https://godoc.org/github.com/eawsy/aws-lambda-go/service/lambda/runtime
 [eawsy-wiki]: https://github.com/eawsy/aws-lambda-go/wiki
 [eawsy-hire-form]: https://docs.google.com/forms/d/e/1FAIpQLSfPvn1Dgp95DXfvr3ClPHCNF5abi4D1grveT5btVyBHUk0nXw/viewform
+[eawsy-pr]: https://github.com/eawsy/aws-lambda-go/issues?q=is:pr%20is:open
+[eawsy-issues]: https://github.com/eawsy/aws-lambda-go/issues?q=is:issue%20is:open
+[eawsy-twitter]: https://twitter.com/@eawsyhq
 [aws-home]: https://aws.amazon.com/
 [aws-lambda-home]: https://aws.amazon.com/lambda/
-[runtime-badge]: http://img.shields.io/badge/runtime-go-ef6c00.svg?style=flat-square
+[aws-lambda-lng]: http://docs.aws.amazon.com/lambda/latest/dg/lambda-app.html#lambda-app-author
 [api-badge]: http://img.shields.io/badge/api-godoc-7986cb.svg?style=flat-square
 [chat-badge]: http://img.shields.io/badge/chat-gitter-e91e63.svg?style=flat-square
 [status-badge]: http://img.shields.io/badge/status-stable-689f38.svg?style=flat-square
 [license-badge]: http://img.shields.io/badge/license-apache-757575.svg?style=flat-square
-[hire-badge]: http://img.shields.io/badge/hire-eawsy-2196f3.svg?style=flat-square
