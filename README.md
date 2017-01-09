@@ -1,5 +1,5 @@
 <a id="top" name="top"></a>
-
+<!--
 ---
 
 > This project will be deprecated by February 2017 with the release of Go 1.8. Please migrate to 
@@ -7,7 +7,7 @@
 
 ---
 <br>
-
+-->
 [<img src="_asset/powered-by-aws.png" alt="Powered by Amazon Web Services" align="right">][aws-home]
 [<img src="_asset/created-by-eawsy.png" alt="Created by eawsy" align="right">][eawsy-home]
 # eawsy/aws-lambda-go
