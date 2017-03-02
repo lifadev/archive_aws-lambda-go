@@ -1,22 +1,18 @@
 <a id="top" name="top"></a>
 
----
-
-> This project will be deprecated by February 2017 with the release of Go 1.8. Please migrate to 
-  [eawsy/aws-lambda-go-shim](https://github.com/eawsy/aws-lambda-go-shim).
-
----
-<br>
+<p align="center"><b>THIS PROJECT IS DEPRECATED IN FAVOR OF ITS SUCCESSOR<br><a href="https://github.com/eawsy/aws-lambda-go-shim">eawsy/aws-lambda-go-shim</a></b></p><br><br>
 
 [<img src="_asset/powered-by-aws.png" alt="Powered by Amazon Web Services" align="right">][aws-home]
 [<img src="_asset/created-by-eawsy.png" alt="Created by eawsy" align="right">][eawsy-home]
+
 # eawsy/aws-lambda-go
+
 > A fast and clean way to execute Go on AWS Lambda.
 
-[![Api][api-badge]][eawsy-godoc]
-[![Status][status-badge]](#top)
-[![License][license-badge]](LICENSE)
-[![Chat][chat-badge]][eawsy-gitter]
+[![Status][badge-status]](#top)
+[![License][badge-license]](LICENSE)
+[![Help][badge-help]][eawsy-chat]
+[![Social][badge-social]][eawsy-twitter]
 
 [AWS Lambda][aws-lambda-home] lets you run code without provisioning or managing servers. [For now][aws-lambda-lng], it 
 only supports Node.js, Java, C# and Python. This project provides Go support *without spawning a process*.
@@ -134,7 +130,8 @@ affiliates in the United States and/or other countries.
 
 [eawsy-home]: https://eawsy.com
 [eawsy-github]: https://github.com/eawsy
-[eawsy-gitter]: https://gitter.im/eawsy/bavardage
+[eawsy-chat]: https://gitter.im/eawsy/bavardage
+[eawsy-twitter]: https://twitter.com/eawsyhq
 [eawsy-godoc]: https://godoc.org/github.com/eawsy/aws-lambda-go/service/lambda/runtime
 [eawsy-wiki]: https://github.com/eawsy/aws-lambda-go/wiki
 [eawsy-hire-form]: https://docs.google.com/forms/d/e/1FAIpQLSfPvn1Dgp95DXfvr3ClPHCNF5abi4D1grveT5btVyBHUk0nXw/viewform
@@ -144,7 +141,7 @@ affiliates in the United States and/or other countries.
 [aws-home]: https://aws.amazon.com/
 [aws-lambda-home]: https://aws.amazon.com/lambda/
 [aws-lambda-lng]: http://docs.aws.amazon.com/lambda/latest/dg/lambda-app.html#lambda-app-author
-[api-badge]: http://img.shields.io/badge/api-godoc-7986cb.svg?style=flat-square
-[chat-badge]: http://img.shields.io/badge/chat-gitter-e91e63.svg?style=flat-square
-[status-badge]: http://img.shields.io/badge/status-stable-689f38.svg?style=flat-square
-[license-badge]: http://img.shields.io/badge/license-apache-757575.svg?style=flat-square
+[badge-status]: http://img.shields.io/badge/status-stable-4CAF50.svg?style=flat-square
+[badge-license]: http://img.shields.io/badge/license-apache-FF5722.svg?style=flat-square
+[badge-help]: http://img.shields.io/badge/help-gitter-E91E63.svg?style=flat-square
+[badge-social]: http://img.shields.io/badge/social-twitter-03A9F4.svg?style=flat-square
